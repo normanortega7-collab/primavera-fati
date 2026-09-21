@@ -1,0 +1,476 @@
+/* Elimina los margenes que agrega el navegador por defecto */
+
+body{
+    margin: 0;
+    min-height: 100dvh;
+
+    position: relative;
+    
+    overflow-x: hidden;
+    overflow-y: auto;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Nunito', sans-serif;
+    text-align: center;
+
+    background: linear-gradient(
+        180deg,
+        #fff8dc,
+        #ffe9a6
+    );
+}
+
+body::before {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.80) 0 10px, rgba(255, 255, 255, 0.25) 11px 22px, transparent 23px),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.70) 0 14px, rgba(255, 255, 255, 0.20) 15px 28px, transparent 29px),
+        radial-gradient(circle at 20% 75%, rgba(255, 255, 255, 0.65) 0 12px, rgba(255, 255, 255, 0.20) 13px 25px, transparent 26px),
+        radial-gradient(circle at 78% 72%, rgba(255, 255, 255, 0.70) 0 9px, rgba(255, 255, 255, 0.20) 10px 21px, transparent 22px);
+
+    animation: mover-luces 5s ease-in-out infinite alternate;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+body::after {
+    content: '';
+
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 10% 60%, rgba(255, 213, 79, 0.35) 0 5px, transparent 7px),
+        radial-gradient(circle at 35% 15%, rgba(255, 255, 255, 0.45) 0 4px, transparent 6px),
+        radial-gradient(circle at 65% 45%, rgba(255, 220, 100, 0.30) 0 6px, transparent 8px),
+        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.40) 0 5px, transparent 7px),
+        radial-gradient(circle at 45% 90%, rgba(255, 210, 70, 0.30) 0 4px, transparent 6px);
+
+    animation: mover-particulas 8s ease-in-out infinite alternate;
+
+    pointer-events: none;
+
+    z-index: 0;
+}
+
+.fondo-extra {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(circle at 12% 18%, rgba(255, 200, 60, 0.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 22% 48%, rgba(255, 255, 255, 0.35)0 2px, transparent 3px),
+        radial-gradient(circle at 32% 78%, rgba(255, 215, 90, 0.30) 0 3px, transparent 4px),
+        radial-gradient(circle at 47% 30%, rgba(255, 255, 255, 0.28) 0 2px, transparent 3px),
+        radial-gradient(circle at 58% 68%, rgba(255, 205, 70, 0.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 72% 12%, rgba(255, 255, 255, 0.30) 0 2px, transparent 3px),
+        radial-gradient(circle at 84% 52%, rgba(255, 215, 80, 0.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 92% 82%, rgba(255, 255, 255, 0.30) 0 2px, transparent 3px);
+
+    animation: mover-polen 10s linear infinite alternate;
+
+    pointer-events: none;
+}
+
+/*Nuevo contenido principal*/
+main {
+    width: 85%;
+    max-width: 400px;
+
+    position: relative;
+    z-index: 1;
+
+    padding: 30px 0;
+
+}
+
+#inicio h1 {
+    font-size: 2.4rem;
+    margin-bottom: 8px;
+}
+
+#inicio p {
+    font-size: 1rem;
+    opacity: 0.75;
+}
+
+/*Titulo*/
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.6rem;
+    font-weight: 700;
+}
+
+button {
+    border: none;
+    border-radius: 30px;
+
+    padding: 15px 28px;
+
+    font-size: 1rem;
+    cursor: pointer;
+
+    background-color: #f4c430;
+    color: #3d3200;
+
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+
+}
+
+.oculto {
+    display: none;
+}
+
+
+
+/* Texto de la pantalla de primavera */
+#primavera h1,
+#primavera p {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.mensaje-final{
+    max-width: 300px;
+    margin: 20px auto 0;
+
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    line-height: 1.4;
+
+    color: #6b4a1f;
+
+    opacity:0;
+    transform: translate(10px);
+}
+
+.planta{
+    position: relative;
+
+    width: 120px;
+    height: 160px;
+
+    margin: -8px auto 0; 
+}
+
+.flor {
+    position: relative;
+
+    height: 350px;
+
+    margin-top: 30px;
+
+    transform-origin: bottom center;
+
+}
+
+.cabeza-flor {
+    position: relative;
+    z-index: 2;
+
+    width: 160px;
+    height: 160px;
+
+    margin: 0 auto;
+    
+    transform: scale(0);
+    transform-origin: bottom center;
+    opacity: 0;
+}
+
+.petalo {
+    position: absolute;
+
+    width: 60px;
+    height: 80px;
+
+    background: linear-gradient(
+    180deg,
+    #fff176 0%,
+    #ffd900 55%,
+    #e6b800 100%
+);
+  
+    box-shadow:
+    0 3px 6px rgba(120, 90, 0, 0.15);
+
+    border-radius: 50%;
+}
+
+.petalo-1 {
+    top: 0;
+    left: 50px;
+}
+
+.petalo-2 {
+    top: 40px;
+    right: 0;
+
+    transform: rotate(90deg);
+}
+
+.petalo-3 {
+    bottom: 0;
+    left: 50px;
+}
+
+.petalo-4 {
+    top: 40px;
+    left: 0;
+
+    transform: rotate(90deg);
+}
+
+.petalo-5 {
+    top: 15px;
+    right: 15px;
+
+    transform: rotate(45deg);
+}
+
+.petalo-6 {
+    bottom: 15px;
+    right: 15px;
+
+    transform: rotate(135deg);
+}
+
+.petalo-7 {
+    bottom: 15px;
+    left: 15px;
+
+    transform: rotate(45deg);
+}
+
+.petalo-8 {
+    top: 15px;
+    left: 15px;
+
+    transform: rotate(135deg);
+}
+
+.centro {
+    position: absolute;
+
+    width: 60px;
+    height: 60px;
+
+    background: radial-gradient(
+    circle,
+    #a86f28 0%,
+    #7a4b16 60%,
+    #54300c 100%
+);
+    border-radius: 50%;
+
+    top: 50px;
+    left: 50px;
+
+    z-index: 3;
+
+}
+
+.tallo {
+    position: absolute;
+    z-index: 1;
+
+    width: 14px;
+    height: 160px;
+
+    left: 50%;
+    bottom: 0;
+
+    background-color: #4f8a3c;
+    border-radius: 10px;
+
+    transform: translateX(-50%) scaleY(0);
+    transform-origin: bottom;
+}
+
+
+.hoja {
+    position: absolute;
+
+    width: 50px;
+    height: 28px;
+
+    background-color: #69a84f;
+
+    border-radius: 70% 0 70% 0;
+
+    opacity: 0;
+}
+
+
+/* Hoja superior izquierda */
+.hoja-izquierda {
+    right: 50%;
+    bottom: 80px;
+
+    transform-origin: right center;
+    transform: rotate(-30deg) scale(0);
+}
+
+
+/* Hoja inferior derecha */
+.hoja-derecha {
+    left: 50%;
+    bottom: 35px;
+
+    transform-origin: left center;
+    transform: rotate(30deg) scale(0);
+}
+
+
+/* Animación del tallo */
+.primavera-activa .tallo {
+    animation: crecer-tallo 1.4s ease-out forwards;
+}
+
+@keyframes crecer-tallo {
+    from {
+        transform: translateX(-50%) scaleY(0);
+    }
+
+    to {
+        transform: translateX(-50%) scaleY(1);
+    }
+}
+
+
+/* Primera hoja: derecha */
+.primavera-activa .hoja-derecha {
+    animation: crecer-hoja-derecha 0.45s ease-out 0.4s forwards;
+}
+
+@keyframes crecer-hoja-derecha {
+    from {
+        transform: rotate(30deg) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(30deg) scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Segunda hoja: izquierda */
+.primavera-activa .hoja-izquierda {
+    animation: crecer-hoja-izquierda 0.45s ease-out 0.8s forwards;
+}
+
+@keyframes crecer-hoja-izquierda {
+    from {
+        transform: rotate(-30deg) scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: rotate(-30deg) scale(1);
+        opacity: 1;
+    }
+}
+
+
+/* Cabeza de la flor */
+.primavera-activa .cabeza-flor {
+    animation: florecer 0.8s ease-out 1.15s forwards;
+}
+
+@keyframes florecer {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    70% {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.primavera-activa h1 {
+    animation: aparecer-texto 0.7s ease-out 1.9s forwards;
+}
+
+.primavera-activa .subtitulo {
+    animation: aparecer-texto 0.7s ease-out 2.2s forwards;
+
+}
+.primavera-activa .flor {
+    animation: balanceo-flor 4s ease-in-out 2.2s infinite alternate;
+}
+
+.primavera-activa .mensaje-final {
+    animation: aparecer-texto 0.8s ease-out 2.8s forwards;
+}
+
+@keyframes balanceo-flor {
+    from {
+        transform: rotate(-1deg);
+    }
+
+    to {
+        transform: rotate(1deg);
+    }
+}
+
+@keyframes aparecer-texto {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes mover-luces {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes mover-particulas {
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(20px, -30px);
+    }
+}
+
+@keyframes mover-polen {
+    from {
+        transform: translate(-10px, 10px);
+    }
+
+    to {
+        transform: translate(20px, -35px);
+    }
+}
